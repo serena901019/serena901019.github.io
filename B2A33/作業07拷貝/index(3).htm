@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>作業07</title>
+    <style>
+
+    h2 {
+			color: red;
+		}
+
+    <table>
+        th{
+		   text-align:center;
+		   birder-color:dodgerblue;
+		   border-style:solid;
+		}
+		tr{
+		   text-align:center;
+		   birder-color:dodgerblue;
+		   border-style:solid;
+		}
+		td{
+		   vertical-align:middle;
+		   border-color:dodgerblue;
+		   border-style:solid;
+	</table>
+    </style>
+
+</head>
+
+<body>
+<h2>九九乘法表</h2>
+
+<table>
+<script>
+
+document.write("<tr>");
+document.write("<tr>");
+
+for (j=1;j<=9;j++){
+document.write("<tr>");
+i = 1;
+while (i <= 9){
+document.write("<td>");
+document.write(i + "*" + j + "=" + i*j+"  ");
+document.write("</td>");
+i++;
+}
+document.write("<tr>");
+}
+
+
+
+
+</script>
+</table>
+</body>
+
+</html>
