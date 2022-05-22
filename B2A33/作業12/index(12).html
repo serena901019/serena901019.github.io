@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>課堂作業12</title>
+    <style>
+        h4 {
+            color: red;
+        }
+        label {
+            color: blue;
+        }
+
+        input {
+            color: green;
+        }
+        div{
+            color: blue;
+            margin: 5px;
+        }
+        table{
+             width:40%;
+             border-color: purple;
+             border-style:solid;
+             border-collapse: collapse;
+        }
+        tr{
+           text-align:left;
+           birder-color:purple;
+           border-style:solid;
+        }
+        td{
+           vertical-align:middle;
+           border-color:purple;
+           border-style:solid;
+
+        td:nth-child(1){
+        color:brown;
+    </style>
+</head>
+<body>
+<form id="form01">
+    <label>姓名:</label>
+    <input type="text" name="name01" value="賀勤容"><br>
+    <label>收件住址:</label>
+    <input type="text" name="address01" value="台北市北投區文化三路78號4樓"><br>
+    <label>電話:</label>
+    <input type="tel" name="tel01" value="0962047908"><br>
+    <label>電子郵件:</label>
+    <input type="email" name="email01" value="serena970209@gmail.com"><br>
+    <label>指定送貨日期:</label>
+    <input type="date" name="date01"><br>
+    <label>水果種類:</label>
+    <label>購買數量:</label>
+    <input type="checkbox" name="fruit" id="fruit01" value="大湖草莓(1盒)">大湖草莓(1盒) 900元;
+    <input type="number" name="number01"><br>
+    <input type="checkbox" name="fruit" id="fruit02" value="無毒珍珠芭樂(5斤)">無毒珍珠芭樂(5斤) 600元;
+    <input type="number" name="number02"><br>
+    <input type="checkbox" name="fruit" id="fruit03" value="富士蘋果(4斤)">富士蘋果(4斤) 500元;
+    <input type="number" name="number03"><br>
+    <input type="checkbox" name="fruit" id="fruit04" value="聖女番茄(3斤)">聖女番茄(3斤) 480元;
+    <input type="number" name="number04"><br>
+</form>
+<button onclick="shoppingInfo()"><h4>結帳</h4></button>
+<div id="demo"></div>
+<script>
+    var text = "<h4>您的購物資訊如下:</h4>";
+    var fruit = function (fruitType, fruitPrice, no){
+        this.Type = fruitType;
+        this.Price = fruitPrice;
+        this.subTotal = function(no){
+           text += "<tr>";
+           text += "<td>" + "水果種類: " + "</td>";
+           text += "<td>" + this.Type + "</td>";
+           text += "</tr>";
+           text += "<tr>";
+           text += "<td>" + "價格小計: " + "</td>";
+           text += "<td>" + this.Price * no + "元</td>";
+           text += "</tr>";
+        };
+    };
+    var fruit01 = new fruit("大湖草莓(1盒)",900, 0);
+    var fruit02 = new fruit("無毒珍珠芭樂(5斤)",600, 0);
+    var fruit03 = new fruit("富士蘋果(4斤)",500, 0);
+    var fruit04 = new fruit("聖女番茄(3斤)",480, 0);
+    function shoppingInfo() {
+        var x  = document.getElementById("form01");
+        var item = "";
+        var sumToPay = 0;
+        var i;
+        text += "<table>";
+        for (i = 0; i < 5; i++) {
+            switch (i){
+                case 0: item = "姓名: "; break;
+                case 1: item = "收件住址: "; break;
+                case 2: item = "電話: "; break;
+                case 3: item = "電子郵件: "; break;
+                case 4: item = "指定送貨日期: "; break;
+            }
+            text += "<tr><td>" + item + x.elements[i].value + "</td></tr>";
+        }
+        for (i=5; i<=11; i++) {
+            if(x.elements[i].checked === true){
+                switch(i){
+                    case 5: fruit01.no = x.elements[i+1].value;
+                            sumToPay += fruit01.Price * fruit01.no;
+                            fruit01.subTotal(fruit01.no);
+                            break;
+                    case 7: fruit02.no = x.elements[i+1].value;
+                            sumToPay += fruit02.Price * fruit02.no;
+                            fruit02.subTotal(fruit02.no);
+                            break;
+                    case 9: fruit03.no = x.elements[i+1].value;
+                            sumToPay += fruit03.Price * fruit03.no;
+                            fruit03.subTotal(fruit03.no);
+                            break;
+                    case 11: fruit04.no = x.elements[i+1].value;
+                            sumToPay += fruit04.Price * fruit04.no;
+                            fruit04.subTotal(fruit04.no);
+                            break;
+                }
+            }
+        }
+        text += "</table>";
+        document.getElementById("demo").innerHTML = text;
+    }
+</script>
+</body>
+</html>
